@@ -12,7 +12,8 @@
       "type": "image/png",
       "sizes": "192x192"
     }
-  ],  
+  ],
   "start_url": "https://ignat-tokar.github.io/dino-game",
-  "display": "fullscreen",
+  "display": "standalone",
+  "prefer_related_applications": false
 }

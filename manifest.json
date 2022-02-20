@@ -1,5 +1,18 @@
 {
   "short_name": "Dino Game",
+  "name": "Dino",
+  "icons": [
+    {
+      "src": "/img/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/img/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],  
   "start_url": "https://ignat-tokar.github.io/dino-game",
-  "display": "fullscreen"
+  "display": "fullscreen",
 }

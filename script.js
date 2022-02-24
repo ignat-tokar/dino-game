@@ -1,20 +1,23 @@
 const dino = document.querySelector('#dino');
 const cactus = document.querySelector('#cactus');
-const startBtn = document.querySelector('#start');
-const stopBtn = document.querySelector('#stop');
-const status = document.querySelector('p');
+const status = document.querySelector('#status');
 
 let count = 0;
-
-startBtn.onmouseup = ()=>{
-  cactus.classList.add('move');
-  status.innerText = 'Status: 0';
-}
-stopBtn.onmouseup = ()=>cactus.classList.remove('move');
+let start = true;
+let firstStart = false;
+let check = true;
 
 document.addEventListener('mouseup', event=>{
-  jump();
+  if(firstStart){
+    jump()
+  }else{
+    firstStart = true;
+    start = true;
+    cactus.classList.add('move');
+    status.innerText = 'Count: 0';
+  }
 });
+
 
 function jump(){
   if(dino.classList != 'jump'){
@@ -22,16 +25,25 @@ function jump(){
   }
   setTimeout(()=>{
     dino.classList.remove('jump');
-  }, 200);
+    check = true;
+  }, 400);
 }
 
-let isAlive = setInterval(()=>{
-  let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue('top'));
-  let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
+setInterval(()=>{
+  if(start){
+    let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue('top'));
+    let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
 
-  if(cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140){
-    cactus.classList.remove('move');
-    status.innerText = 'Status: Game over!!!';
-    count = 0;
+    if(cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140){
+      cactus.classList.remove('move');
+      status.innerText = 'Game over!';
+      count = 0;
+      start = false;
+      firstStart = false;
+    }else if(cactusLeft < 50 && dinoTop <= 140 && check){
+      count += 1;
+      check = false;
+      status.innerText = `Count: ${count}`;
+    }
   }
 }, 10);

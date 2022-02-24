@@ -18,7 +18,6 @@ document.addEventListener('mouseup', event=>{
   }
 });
 
-
 function jump(){
   if(dino.classList != 'jump'){
     dino.classList.add('jump');  
